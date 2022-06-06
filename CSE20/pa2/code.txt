@@ -1,0 +1,27 @@
+import turtle
+# Isaac Rohret
+# irohret@ucsc.edu
+# programing assignment 2
+# This Program draws a star with n vertex's based on the user input
+ws = turtle.Screen()
+turtle.ht()
+turtle.penup()
+turtle.backward(150)
+turtle.pendown()
+turtle.pensize(2)
+turtle.speed(10)
+turtle.color('green')
+turtle.begin_fill()
+Vertex = int(input("Enter an odd integer greater than or equal to 3: "))
+# N = Vertex
+turtle.pencolor("blue")
+N = Vertex
+k = str(N) + "-poined star"
+ws.title(k)
+angle = 180 - 180 / Vertex
+for i in range(Vertex):
+    turtle.forward(300)
+    turtle.right(angle)
+    turtle.dot(10, "red")
+turtle.end_fill()
+ws.mainloop()

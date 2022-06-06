@@ -1,0 +1,28 @@
+
+import math
+
+# Isaac Rohret
+# irohret@ucsc.edu
+# programing assignment 1
+# This program allows you find the volume and surface area of a sphere based on the radius you input into the system
+
+# store all given input in variable (radius)
+radius = float(input("Enter the radius of the sphere: "))
+
+# calculate the volume of the sphere
+a = 4 / 3
+b = math.pi
+
+# calculate the surface area of a sphere
+
+x = 4
+y = math.pi
+
+# output
+
+sphere = (a * b * radius**3)
+volume_of_the_sphere = (x * y * radius**2)
+
+print("The volume is:",sphere)
+print("The surface area is:",volume_of_the_sphere)
+

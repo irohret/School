@@ -1,0 +1,71 @@
+ # Isaac Rohret
+# irohret@ucsc.edu
+# programing assignment 4
+# This Program reads a positive integer n fromm user input, then print out
+# the prime numbers that are less that or equal to n.
+
+def makeSieve(n):
+    sieve = []
+    sieve_boolean = []
+    for i in range(n + 1):
+        sieve.append(i)
+        sieve_boolean.append(True)
+    sieve_boolean[0] = False
+    sieve_boolean[1] = False
+    i = 2
+    while i < len(sieve_boolean):
+        if sieve_boolean[i] == True:
+            number = sieve[i]
+            for j in range(i + 1, len(sieve_boolean)):
+                if sieve[j] % number == 0:
+                    sieve_boolean[j] = False
+        i += 1
+
+    return sieve_boolean
+
+def getIndices(L, x):
+    List = []
+    for i in range(len(L)):
+        if x == L[i]:
+            List.append(i)
+    return List
+
+def main():
+    print()
+    n = int(input("Enter a positive integer: "))
+
+    while (int(n) <= 0):
+        n = int(input("Please enter a positive integer: "))
+    list = makeSieve(n)
+    primes = getIndices(list, True)
+    composites = getIndices(list, False)
+
+    print()
+    print("There are " + str(len(primes)) + " prime numbers in the range 1 to " + str(n) + ":")
+    print()
+
+    count = 0
+    for i in primes:
+        count += 1
+        print(i, end=" ")
+        if count % 10 == 0:
+            print("")
+
+    if n != 1:
+        print()
+    print()
+    print("There are " + str(len(composites[1:])) + " composite numbers in the range 1 to " + str(n) + ":")
+    print()
+
+    count = 0
+    for i in composites[1:]:
+        count += 1
+        print(i, end=" ")
+        if count % 10 == 0:
+            print("")
+    print()
+    print()
+
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,59 @@
+
+# ----------------------------------------------------------------------------------------------------------------
+# Isaac Rohret
+# irohret@ucsc.edu
+# programing assignment 6
+# This program creates a dictionary whose values are list of anagrams of word read form a file
+# ----------------------------------------------------------------------------------------------------------------
+
+
+def norm(s):
+    temp = list(s)  # convert string into a list
+    temp.sort()  # sort the letters into alphabetical order
+    news = "".join(temp)  # return back to a string
+    return news
+
+
+def AnagramDictionary(f):
+    data_array = f.split()
+    dictionary = {}
+    for element in data_array:
+        create_new_word = norm(element)
+        dictionary.update({create_new_word: []})
+    for element in data_array:
+        create_new_word = norm(element)
+        dictionary[create_new_word].append(element)
+    return dictionary
+
+
+def printWordList(L):
+    print(", ".join(L))
+
+
+def main():
+    print()
+    text = open("scrabble.txt", "r")  # reads the file "r" is write
+    data = text.read()
+    d = AnagramDictionary(data)  # creates the dictionary
+    while True:
+        user_input = input("Enter a string (or nothing to quit): ")
+        if len(user_input) == 0:  # if user entered nothing then exit the program
+            print()
+            print("Bye!")
+            break
+        else:  # print out the anagrams
+            try:
+                value = d[norm(user_input)]
+                print()
+                print('The anagrams of {0} are:'.format(user_input))
+                print(*value, sep=", ")  # print list without brackets
+                print()
+            except:
+                print()
+                print("The letters in '{0}' do not form a word in the dictionary".format(user_input))
+                print()
+
+    print()
+
+
+if __name__ == "__main__":

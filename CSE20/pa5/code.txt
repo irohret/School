@@ -1,0 +1,70 @@
+
+#------------------------------------------------------------------------
+# Isaac Rohret
+# irohret@ucsc.edu
+# programing assignment 5
+# This Program computes the random value of a determinant of a random matrix
+# represented as a list of lists of numeric values
+#------------------------------------------------------------------------
+
+import random
+
+def Det(M):
+    row = len(M)
+    column= row
+    if (row == 0):
+        return 0
+    if (row == 1):
+        return M[row - 1][column - 1]
+
+    ans = 0
+    for i in range(column):
+        M2 = []
+        M1 = []
+        for j in range(row):
+            for k in range(column):
+
+                if (j != 0 and k != i):
+                    M2.append(M[j][k])
+            if (j != 0):
+                M1.append(M2)
+                M2 = []
+        if (i % 2 == 0):
+            ans = ans + M[0][i] * Det(M1)
+        else:
+            ans = ans - M[0][i] * Det(M1)
+
+    return ans
+
+def main(seed=None):
+    rng = random.Random(seed)
+    print()
+    return_value = len("n" + " "*10 + "average of abs(det(M))")  #print table heading
+    print(" " + "n" + " " * 10 + "average of abs(det(M))")
+    print("-" * 34)
+    M = []
+    M1 = [0] * 10000
+
+    for n in range(1, 6):  # for each n form 1 to 5
+        for i in range(0, 10000):  # for each k form 1 to 10,000
+            M = []
+            for j in range(n):
+                M2=[]
+                for k in range(n):
+                    M2.append(rng.uniform(-5, 5))  # using rng.uniform(-5,5) to produce its entries
+                M.append(M2)
+            M1[i] = abs(Det(M))  # compute the absolute value of the determinants
+
+        add_space = str(round(sum(M1)/len(M1)))  # computing the average of the absolute value of the determinants
+        guess = return_value - len(add_space)-18
+        space = " "
+        for k in range(guess):
+            space = space+" "
+
+        print(" "+str(n) + space + str("{0:.5f}".format(sum(M1) / len(M1))))  # print the average, formatted for the body of the table
+
+    print()
+
+
+if __name__ == "__main__":
+    main()
