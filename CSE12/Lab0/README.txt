@@ -1,0 +1,1 @@
+I, Isaac Rohret, have read and understood the Spring CSE12 syllabus and Personal Responsibility Document. irohret@ucsc.edu 30 March 2022
